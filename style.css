@@ -156,7 +156,6 @@ header {
 .reset-best-score-button {
     font-family: "Nunito", sans-serif;
     font-size: 14px;
-
     position: absolute;
     right: 10px;
     transform: translateY(-50%);

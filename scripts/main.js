@@ -69,7 +69,6 @@ function createObstacle() {
     function moveObstacle() {
         velocityX -= speed;
         cactus.style.left = velocityX + "px";
-
         if (velocityX > -100) {
             if (!gameOver) {
                 checkCollision(dino, cactus, moveObstacle);
