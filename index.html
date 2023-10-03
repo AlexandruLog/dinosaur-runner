@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dinosaur Runner</title>
+        <link rel="shortcut icon" href="./images/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Dinosaur Runner</h1>
+        </header>
+        <div class="gameboard">
+            <h4 id="wellcome">Press Any Key To Start</h4>
+            <!-- Dino -->
+            <img class="dino" src="./images/Dino_Idle.png" draggable="false" alt="dino_idle" />
+
+            <div class="obstacles">
+                <!-- Add dynamically -->
+            </div>
+
+            <!-- Game Terrain -->
+            <div class="terrain-area">
+                <img
+                    class="ground1"
+                    src="./images/Ground.png"
+                    draggable="false"
+                    alt="groundImg"
+                />
+                <img
+                    class="ground2"
+                    src="./images/Ground.png"
+                    draggable="false"
+                    alt="groundImg"
+                />
+            </div>
+
+            <!-- Game OverMenu -->
+            <div class="retry-menu">
+                <div>
+                    <img
+                        class="game-over-message"
+                        src="./images/game-over.png"
+                        alt="game-over-message"
+                    />
+                </div>
+
+                <div class="score-details">
+                    <h3 class="best-score">Best Score:</h3>
+                    <div>
+                        <button class="reset-best-score-button">Reset Score</button>
+                    </div>
+                </div>
+                <div>
+                    <img class="retry-button" src="./images/Retry.png" alt="retry_btn" />
+                </div>
+            </div>
+            <!-- LIVE GAME SCORE -->
+            <div class="live-score">
+                <p id="highest-score">HI 0</p>
+                <p id="score">123</p>
+            </div>
+        </div>
+
+        <script src="scripts/main.js"></script>
+    </body>
+</html>

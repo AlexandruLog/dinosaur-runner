@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;1,300&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: "Nunito", sans-serif;
+    background: linear-gradient(1deg, lightgrey, white);
+}
+
+header {
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    letter-spacing: 4px;
+    transform: translate(-50%, -50%);
+
+    transition: 1.3s ease-out;
+}
+
+.slideTitle {
+    top: 20%;
+}
+
+/* GAMEBOARD */
+
+.gameboard {
+    background: white;
+    width: 820px;
+    height: 350px;
+    border: 2px solid #000;
+    position: absolute;
+    border-radius: 10px;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+/* DINO */
+
+.dino {
+    width: 65px;
+    position: absolute;
+    bottom: 1px;
+    left: 130px;
+    transition: 1s;
+}
+
+.jump {
+    animation: jumpEffect 0.8s ease-out;
+}
+
+@keyframes jumpEffect {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(-170%) scale(0.75);
+    }
+
+    50% {
+        transform: translateY(-150%) scale(0.8);
+    }
+
+    /* 60% {
+        transform: translateY(-100%);
+    } */
+}
+
+/* CACTUS */
+
+.cactus {
+    height: 60px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-left: 15px;
+}
+
+/* GROUND */
+
+.ground1,
+.ground2 {
+    width: 180%;
+    position: absolute;
+    bottom: 0;
+}
+
+.ground2 {
+    left: 100%;
+}
+
+/* AESTHETICS    */
+
+#wellcome {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+}
+
+/* RETRY MENU */
+
+.retry-menu {
+    width: max-content;
+    height: max-content;
+    background-color: #eee;
+    padding: 23px 38px 15px 38px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 20px;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    transition: 0.8s;
+}
+
+.show-game-over-menu {
+    visibility: visible;
+    animation: openMenu 0.85s;
+}
+
+.game-over-message {
+    width: 290px;
+}
+
+.retry-button {
+    width: 42px;
+    cursor: pointer;
+}
+
+.best-score {
+    color: #555;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+
+.score-details {
+    display: flex;
+    align-items: center;
+}
+
+.reset-best-score-button {
+    font-family: "Nunito", sans-serif;
+    font-size: 14px;
+
+    position: absolute;
+    right: 10px;
+    transform: translateY(-50%);
+    padding: 3px 6px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.reset-best-score-button:hover {
+    color: #555;
+}
+
+@keyframes openMenu {
+    from {
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* SCORE */
+
+.live-score {
+    width: 130px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #e3e3e3;
+    color: #222;
+    border-bottom-left-radius: 5px;
+    display: flex;
+
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    visibility: hidden;
+}
+
+/* CLOUDS */
+
+@media screen and (orientation: landscape) and (max-width: 700px) {
+    .gameboard {
+        width: 90vw;
+        height: 70vh;
+    }
+}
