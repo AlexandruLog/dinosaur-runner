@@ -12,6 +12,7 @@ let cactusModel = [
     "./images/Cactus_Small_Single.png",
     "./images/Cactus_Small_Double.png",
     "./images/Cactus_Small_Triple.png",
+    "./images/Cactus_Big_Single.png",
     "./images/Cactus_Big_Double.png",
     "./images/Cactus_Big_Triple.png",
 ];
@@ -24,24 +25,19 @@ let speed = 6;
 let createObstaclesTimeout;
 let runningInterval;
 let scoreInterval;
-
-// let moveGround1Request;
 let moveGround1Request;
 let moveGround2Request;
 
-//MAKE DINO JUMP - OK
+//MAKE DINO JUMP [START GAME]
 document.addEventListener("keydown", jumpDino);
 function jumpDino(e) {
     if (e.code === "Space" && !dino.classList.contains("jump")) {
         dino.classList.add("jump");
-
         setTimeout(() => {
             dino.classList.remove("jump");
         }, 800);
-
         jumpSound();
     }
-
     if (lockedObstacles) {
         lockedObstacles = false;
         setTimeout(() => {
@@ -54,32 +50,30 @@ function jumpDino(e) {
         }, 1000);
         runningEffect();
         moveGround1Request = requestAnimationFrame(moveGround1);
-
         document.querySelector("#wellcome").style.display = "none";
     }
 }
-// localStorage.clear();
 
-// CREATE OBSTACLES - OK
+// CREATE OBSTACLES
 function createObstacle() {
     let cactus = document.createElement("img");
     cactus.src =
         speed < 8
-            ? cactusModel[Math.floor((Math.random() * cactusModel.length) / 2)]
+            ? cactusModel[Math.floor(Math.random() * 2)]
             : cactusModel[Math.floor(Math.random() * cactusModel.length)];
     cactus.classList.add("cactus");
     obstaclesArea.appendChild(cactus);
     let velocityX = gameboard.getBoundingClientRect().width + 100;
 
-    //MOVE OBSTACLES - OK
+    //MOVE OBSTACLES
     function moveObstacle() {
-        velocityX -= speed; //Change due the game
+        velocityX -= speed;
         cactus.style.left = velocityX + "px";
 
         if (velocityX > -100) {
             if (!gameOver) {
                 checkCollision(dino, cactus, moveObstacle);
-                //Also, it will stop moving the next cactus
+                //It also stops moving the next cactus
             }
         } else {
             obstaclesArea.removeChild(cactus);
@@ -94,7 +88,7 @@ function createObstacle() {
     }, randomTimeout);
 }
 
-//CHECK COLLISION - OK
+//CHECK COLLISION
 function checkCollision(dino, cactus, moveObstacle) {
     let dinoRect = dino.getBoundingClientRect();
     let cactusRect = cactus.getBoundingClientRect();
@@ -147,17 +141,15 @@ function startCountingScore(scoreValueCheck = 100) {
 const terrainArea = document.querySelector(".terrain-area");
 const ground1 = document.querySelector(".ground1");
 const ground2 = document.querySelector(".ground2");
+let gameboardRect = gameboard.getBoundingClientRect();
 let runG1 = true;
 let runG2 = true;
 let ground1X = 0;
 
-let gameboardRect = gameboard.getBoundingClientRect();
 function moveGround1() {
     let ground1Rect = ground1.getBoundingClientRect();
-
     ground1X -= speed;
     ground1.style.left = ground1X + "px";
-
     if (ground1Rect.x + ground1Rect.width < gameboardRect.right + 20) {
         if (runG2 === true) {
             requestAnimationFrame(moveGround2);
@@ -176,12 +168,11 @@ function moveGround1() {
 }
 
 let ground2X = gameboardRect.width;
+
 function moveGround2() {
     let ground2Rect = ground2.getBoundingClientRect();
-
     ground2X -= speed;
     ground2.style.left = ground2X + "px";
-
     if (ground2Rect.x + ground2Rect.width < gameboardRect.right + 20) {
         if (runG1 === true) {
             requestAnimationFrame(moveGround1);
@@ -221,18 +212,14 @@ document.querySelector(".reset-best-score-button").onclick = () => {
 
 //RESTART GAME
 retryBtn.onclick = () => {
-    setTimeout(() => {
-        pageTitle.classList.remove("slideTitle");
-    }, 150);
-
+    pageTitle.classList.remove("slideTitle");
     setTimeout(() => {
         location.reload();
     }, 1400);
 };
 
-// MOVE CLOUDS
-// let cloudX =
-function moveClouds() {}
+// MOVE CLOUDS []
+// function moveClouds() {}
 
 //AUDIO SETTINGS
 function jumpSound() {
