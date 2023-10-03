@@ -26,7 +26,7 @@ header {
 }
 
 .slideTitle {
-    top: 20%;
+    top: 15%;
 }
 
 /* GAMEBOARD */
@@ -71,10 +71,6 @@ header {
     50% {
         transform: translateY(-150%) scale(0.8);
     }
-
-    /* 60% {
-        transform: translateY(-100%);
-    } */
 }
 
 /* CACTUS */
@@ -208,10 +204,3 @@ header {
 }
 
 /* CLOUDS */
-
-@media screen and (orientation: landscape) and (max-width: 700px) {
-    .gameboard {
-        width: 90vw;
-        height: 70vh;
-    }
-}

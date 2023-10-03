@@ -30,13 +30,9 @@ let moveGround1Request;
 let moveGround2Request;
 
 //MAKE DINO JUMP - OK
-document.addEventListener("mousedown", jumpDino); //Mouse
-document.addEventListener("keydown", jumpDino); //Keyboard
+document.addEventListener("keydown", jumpDino);
 function jumpDino(e) {
-    if (
-        (e.code === "Space" && !dino.classList.contains("jump")) ||
-        !dino.classList.contains("jump")
-    ) {
+    if (e.code === "Space" && !dino.classList.contains("jump")) {
         dino.classList.add("jump");
 
         setTimeout(() => {
