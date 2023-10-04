@@ -98,11 +98,12 @@ function checkCollision(dino, cactus, moveObstacle) {
     ) {
         gameOver = true;
         clearTimeout(createObstaclesTimeout);
-        cancelAnimationFrame(requestAnimationFrame(moveObstacle));
+
         clearInterval(runningInterval);
         clearInterval(scoreInterval);
 
         menu.classList.add("show-game-over-menu");
+
         updateUserBestScore();
         crashSound();
     } else {
@@ -116,11 +117,11 @@ function runningEffect() {
         dino.src = "./images/Dino_Run01.png";
         setTimeout(() => {
             dino.src = "./images/Dino_Run02.png";
+            if (gameOver) {
+                dino.src = "./images/dino-dead.png";
+            }
         }, 250);
     }, 500);
-    if (gameOver) {
-        dino.src = "./images/dino-dead.png";
-    }
 }
 
 // SCORE COUNTING
@@ -214,7 +215,7 @@ retryBtn.onclick = () => {
     pageTitle.classList.remove("slideTitle");
     setTimeout(() => {
         location.reload();
-    }, 1400);
+    }, 1200);
 };
 
 // MOVE CLOUDS []
@@ -223,19 +224,19 @@ retryBtn.onclick = () => {
 //AUDIO SETTINGS
 function jumpSound() {
     let sound = new Audio("./audio/jump.mp3");
-    sound.volume = 0.25;
+    sound.volume = 1;
     sound.onload = sound.play();
 }
 
 function crashSound() {
     let sound = new Audio("./audio/collision.mp3");
-    sound.volume = 0.3;
+    sound.volume = 1;
     sound.onload = sound.play();
 }
 
 function scoreSound() {
     let sound = new Audio("./audio/points.mp3");
-    sound.volume = 0.08;
+    sound.volume = 1;
     sound.onload = sound.play();
 }
 
