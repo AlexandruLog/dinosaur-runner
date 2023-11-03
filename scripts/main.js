@@ -1,6 +1,7 @@
 const gameboard = document.querySelector(".gameboard");
 const dino = document.querySelector(".dino");
 const obstaclesArea = document.querySelector(".obstacles");
+const cloudsArea = document.querySelector(".clouds-area");
 const retryBtn = document.querySelector(".retry-button");
 const pageTitle = document.querySelector("header");
 const menu = document.querySelector(".retry-menu");
@@ -28,10 +29,10 @@ let scoreInterval;
 let moveGround1Request;
 let moveGround2Request;
 
-//MAKE DINO JUMP [START GAME]
+//MAKE DINO JUMP
 document.addEventListener("keydown", jumpDino);
 function jumpDino(e) {
-    if (e.code === "Space" && !dino.classList.contains("jump")) {
+    if (e.code === "Space" && !dino.classList.contains("jump") && !gameOver) {
         dino.classList.add("jump");
         setTimeout(() => {
             dino.classList.remove("jump");
@@ -72,7 +73,6 @@ function createObstacle() {
         if (velocityX > -100) {
             if (!gameOver) {
                 checkCollision(dino, cactus, moveObstacle);
-                //It also stops moving the next cactus
             }
         } else {
             obstaclesArea.removeChild(cactus);
@@ -98,12 +98,9 @@ function checkCollision(dino, cactus, moveObstacle) {
     ) {
         gameOver = true;
         clearTimeout(createObstaclesTimeout);
-
         clearInterval(runningInterval);
         clearInterval(scoreInterval);
-
         menu.classList.add("show-game-over-menu");
-
         updateUserBestScore();
         crashSound();
     } else {
@@ -217,9 +214,6 @@ retryBtn.onclick = () => {
         location.reload();
     }, 1200);
 };
-
-// MOVE CLOUDS []
-// function moveClouds() {}
 
 //AUDIO SETTINGS
 function jumpSound() {
