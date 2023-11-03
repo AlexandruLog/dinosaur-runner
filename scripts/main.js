@@ -191,7 +191,7 @@ function moveGround2() {
 function updateUserBestScore() {
     if (
         scorePoints > parseInt(localStorage.getItem("bestScore")) ||
-        localStorage.length == 0
+        !localStore.getItem("bestScore")
     ) {
         localStorage.setItem("bestScore", scorePoints);
         bestScore.textContent = "Best Score: " + localStorage.getItem("bestScore");
