@@ -20,7 +20,7 @@ let cactusModel = [
 let lockedObstacles = true;
 let gameOver = false;
 let scorePoints = 0;
-let speed = 6;
+let speed = 3;
 
 // INTERVALS
 let createObstaclesTimeout;
@@ -46,7 +46,8 @@ function jumpDino(e) {
             startCountingScore();
             scoreBox.style.visibility = "visible";
             if (localStorage.getItem("bestScore") != null) {
-                highestScore.textContent = "HI " + localStorage.getItem("bestScore");
+                highestScore.textContent =
+                    "HI " + localStorage.getItem("bestScore");
             }
         }, 1000);
         runningEffect();
@@ -60,7 +61,7 @@ function createObstacle() {
     let cactus = document.createElement("img");
     cactus.src =
         speed < 8
-            ? cactusModel[Math.floor(Math.random() * 2)]
+            ? cactusModel[Math.floor(Math.random() * 1)]
             : cactusModel[Math.floor(Math.random() * cactusModel.length)];
     cactus.classList.add("cactus");
     obstaclesArea.appendChild(cactus);
@@ -191,12 +192,14 @@ function moveGround2() {
 function updateUserBestScore() {
     if (
         scorePoints > parseInt(localStorage.getItem("bestScore")) ||
-        !localStore.getItem("bestScore")
+        !localStorage.getItem("bestScore")
     ) {
         localStorage.setItem("bestScore", scorePoints);
-        bestScore.textContent = "Best Score: " + localStorage.getItem("bestScore");
+        bestScore.textContent =
+            "Best Score: " + localStorage.getItem("bestScore");
     } else {
-        bestScore.textContent = "Best Score: " + localStorage.getItem("bestScore");
+        bestScore.textContent =
+            "Best Score: " + localStorage.getItem("bestScore");
     }
 }
 
